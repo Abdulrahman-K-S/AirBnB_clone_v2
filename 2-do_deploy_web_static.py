@@ -3,7 +3,6 @@ from datetime import datetime
 from fabric.api import *
 from os import path
 
-
 env.hosts = ['34.229.66.75', '54.90.5.56']
 
 
@@ -24,7 +23,7 @@ def do_deploy(archive_path):
     """
 
     if path.exists(archive_path):
-        archive = archive_path.split('/')[1]
+        archive = archive_path.split('/')[-1]
         a_path = "/tmp/{}".format(archive)
         folder = archive.split('.')[0]
         f_path = "/data/web_static/releases/{}/".format(folder)
@@ -33,7 +32,7 @@ def do_deploy(archive_path):
         run("mkdir -p {}".format(f_path))
         run("tar -xzf {} -C {}".format(a_path, f_path))
         run("rm {}".format(a_path))
-        run("mv -f {}web_static/* {}".format(f_path, f_path))
+        run("mv -uf {}web_static/* {}".format(f_path, f_path))
         run("rm -rf {}web_static".format(f_path))
         run("rm -rf /data/web_static/current")
         run("ln -s {} /data/web_static/current".format(f_path))
