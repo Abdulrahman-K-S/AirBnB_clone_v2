@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     @app.route('/c/<text>', strict_slashes=False)
     def c(text):
-        """Display "C " followed by the value of
+        """Display 'C ' followed by the value of
         the text variable (replace underscore _
         symbols with a space)
         """
@@ -29,18 +29,16 @@ if __name__ == '__main__':
     @app.route('/python/')
     @app.route('/python/<text>', strict_slashes=False)
     def python(text="is cool"):
-        """Display "Python " followed by the valye
-        of the text variable (replace underscore _
-        symbols with a space)
+        """Display 'Python ', followed by the value of
+        the text variable (replace underscore _
+        symbols with a space )
         """
         return 'Python ' + text.replace('_', ' ')
-    
+
     @app.route('/number/<int:n>', strict_slashes=False)
     def number(n):
-        """Display "<number> is a number" only
-        if n is an integer
+        """Display 'n is a number' only if n is an integer
         """
-        return str(n) + " is a number"
+        return str(n) + ' is a number'
 
     app.run('0.0.0.0')
-
